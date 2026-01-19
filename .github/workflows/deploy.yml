@@ -1,0 +1,25 @@
+name: Deploy IP Mask
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Puxar o código do repositório
+      - name: Checkout site-tools-maskDisplay
+        uses: actions/checkout@v4
+
+      # Passo 3: Deploy usando peaceiris/actions-gh-pages
+      - name: Deploy para /tools/maskDisplay
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: le314u/le314u.github.io
+          publish_branch: prod
+          publish_dir: .
+          destination_dir: tools/maskDisplay
